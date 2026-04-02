@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
 
 import User from '../models/user.model.js'
-
+// check whether user is authenticated or not 
 export const protectRoute = async(req ,res ,next) =>{
       try {
-            const token = req.cookie.jwt
+            const token = req.cookies.jwt
             if(!token){
                   return res.status(401).json({message : "Unauthorized - No Token Provided"})
             }
@@ -24,6 +24,7 @@ export const protectRoute = async(req ,res ,next) =>{
             
             
       } catch (error) {
-            console.log()
+            console.log("Error in prottect Route middle" , error.message)
+            return res.send(500).json({message : "Internal error"})
       }
 }
