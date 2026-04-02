@@ -3,11 +3,13 @@ import authRoutes from './routes/auth.route.js';
 import dotenv from 'dotenv'
 import {connectDB} from "./lib/db.js"
 import cookieParser from 'cookie-parser'
+import messageRoutes from "./routes/message.route.js"
 const app = express()
 app.use(express.json()) // this will allow you to extract json data from db
 app.use(cookieParser())
 
 app.use("/api/auth" , authRoutes)
+app.use("/api/message" , messageRoutes)
 dotenv.config()
 app.get('/', (req , res)=>{
       res.send("hello world")
